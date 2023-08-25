@@ -4,45 +4,25 @@
 generate_makefile() {
 	# Get the name of the executable
 	program_name=$(ls *.c | head -n 1 | cut -d '.' -f 1)
-
-    # Get a list of C source files in the current directory
     SRC=$(ls *.c 2>/dev/null)
-
-    # Check if any source files were found
     if [ -z "$SRC" ]; then
         echo "No C source files found in the current directory."
         return
     fi
-
-    # Create the Makefile
     cat <<EOT > Makefile
-# Compiler and compiler flags
 CC = gcc
-CFLAGS = -Wall -Wextra -g
-
-# Name of the executable
-TARGET = $program_name
-
-# Source files and object files
+CFLAGS = -Wall -Wextra -Werror
+NAME = $program_name
 SRC = $(ls *.c | tr '\n' ' ')
 OBJ = \$(SRC:.c=.o)
-
-# Default rule
-all: \$(TARGET)
-
-# Rule to compile the executable
-\$(TARGET): \$(OBJ)
-	\$(CC) \$(CFLAGS) -o \$(TARGET) \$(OBJ)
-
-# Rule to compile C source files to object files
+all: \$(NAME)
+\$(NAME): \$(OBJ)
+	\$(CC) \$(CFLAGS) -o \$(NAME) \$(OBJ)
 .c.o:
 	\$(CC) \$(CFLAGS) -c \$<
-
-# Clean rule
 clean:
-	rm -f \$(OBJ) \$(TARGET)
+	rm -f \$(OBJ) \$(NAME)
 EOT
-
     echo "Makefile created successfully."
 }
 while true; do
