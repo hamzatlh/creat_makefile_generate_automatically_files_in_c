@@ -9,12 +9,12 @@
 
 The script will start monitoring the directory for new .c files and will automatically generate or update the Makefile as needed.
 
-    The script will keep running indefinitely. To stop the script, press Ctrl + C.
+--> The script will keep running indefinitely. To stop the script, press Ctrl + C.
 
-Important Notes
+Important Notes : 
 
-    The script uses a simple polling mechanism to detect changes in the directory. While this approach doesn't require any external dependencies, it may not be the most efficient solution for all scenarios.
+1 - The script uses a simple polling mechanism to detect changes in the directory. While this approach doesn't require any external dependencies, it may not be the most efficient solution for all scenarios.
 
-    Ensure that the script and the Makefile generated are located in the same directory where you want to compile the C source files.
+2 - Ensure that the script and the Makefile generated are located in the same directory where you want to compile the C source files.
 
-    The script includes a sleep time of 5 seconds between checks for new files. You can adjust this value according to your preferences and system resources.
+3 - The script includes a sleep time of 5 seconds between checks for new files. You can adjust this value according to your preferences and system resources.
